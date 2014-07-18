@@ -1,0 +1,5 @@
+[myrepo]
+name=CentOS-$releasever - Myrepo
+#mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=os
+baseurl=http://10.100.51.92
+gpgcheck=0
