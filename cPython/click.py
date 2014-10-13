@@ -1,8 +1,12 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-rfile="201409181353-exchange-a04-cn-reportserver-click.log"
-wfile=rfile[:-4]+"-express.log"
+import sys,os
+try:
+    rfile = sys.argv[1]
+except:
+    os.system("python sendmail.py")
+wfile = rfile[:-4].replace('log','express_log') +"-express.log"
 
 r=open(rfile)
 w=open(wfile,'w')
