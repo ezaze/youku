@@ -1,8 +1,12 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-rfile="201409151609-exchange-a05-cn-reportserver-auction.log"
-wfile=rfile[:-4]+"-express.log"
+import sys,os
+try:
+    rfile = sys.argv[1]
+except:
+    os.system("python sendmail.py")
+wfile = rfile[:-4].replace('log','express_log') +"-express.log"
 
 r=open(rfile)
 w=open(wfile,'w')
@@ -18,3 +22,6 @@ for line in r.readlines():
     dsp_result=dsp_result[:-1]
 
     w.write(parts[6]+'\t'+parts[4]+'\t'+parts[7]+'\t'+parts[8]+'\t'+parts[9]+'\t'+dsp_result+'\n')
+
+r.close()
+w.close()
