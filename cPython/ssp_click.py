@@ -29,7 +29,7 @@ for line in r.readlines():
     str=version+"\t"
     str+=(combine(result,"bj")+'\t')
     str+=(combine(result,"s")+'\t')
-    str+=' \t'
+    str+=(combine(result,"bf")+'\t')
     if combine(result,"be") == "":
         str+=(combine(result,"ci") + '\t')
     else:
@@ -66,7 +66,7 @@ for line in r.readlines():
     str+=' \t'
     str+=(combine(result,"spc")+'\t')
     str+=(combine(result,"slog")+'\n')
-   
+
    #test
     if combine(result,"slog")=="":
         i+=1
