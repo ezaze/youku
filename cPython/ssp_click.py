@@ -26,46 +26,47 @@ for line in r.readlines():
     for part in parts:
         result[part.split('=')[0]]=part.split('=')[1]
 
-    str=version+"\t"
-    str+=(combine(result,"bj")+'\t')
-    str+=(combine(result,"s")+'\t')
-    str+=(combine(result,"bf")+'\t')
-    if combine(result,"be") == "":
+    str=version+"\t"                //version
+    str+=(combine(result,"bj")+'\t') //time
+    str+=(combine(result,"s")+'\t') //ip
+    str+=(combine(result,"bf")+'\t') //dspid castid
+    if combine(result,"be") == "":  //idea
         str+=(combine(result,"ci") + '\t')
     else:
         str+=(combine(result,"be")+'\t')
-    str+=(combine(result,"sct")+'\t')
-    str+=(combine(result,"scs")+'\t')
-    str+=(combine(result,"sv")+'\t')
-    str+=(combine(result,"su")+'\t')
-    str+=('2'+'\t')
-    str+=(combine(result,"sck")+'\t')
-    str+=' \t'
-    str+=(combine(result,"bl")+'\t')
-    str+=(combine(result,"ss")+'\t')
-    str+=(combine(result,"std")+'\t')
-    str+=' \t'
-    str+=(combine(result,"sat")+'\t')
-    str+=' \t'
-    str+=(combine(result,"scr")+'\t')
-    str+=' \t'
-    str+=(combine(result,"sprd")+'\t')
-    str+=' \t'
-    str+=' \t'
-    str+=' \t'
-    str+=' \t'
-    str+=' \t'
-    str+=' \t'
-    str+=' \t'
-    str+=' \t'
-    str+=(combine(result,"suri")+'\t')
-    str+=' \t'
-    str+=' \t'
-    str+=' \t'
-    str+=' \t'
-    str+=' \t'
-    str+=(combine(result,"spc")+'\t')
-    str+=(combine(result,"slog")+'\n')
+    str+=(combine(result,"sct")+'\t') //categoryid
+    str+=(combine(result,"scs")+'\t') //subcategoryid
+    str+=(combine(result,"sv")+'\t') //vid
+    str+=(combine(result,"su")+'\t') //uid
+    str+=('2'+'\t')  //胜出平台id exchange 2
+    str+=(combine(result,"sck")+'\t')  //cookie
+    str+=' \t'     //al
+    str+=(combine(result,"bl")+'\t') //isLong
+    str+=(combine(result,"ss")+'\t') //节目id
+    str+=(combine(result,"std")+'\t') //正本视频vid
+    str+=' \t' //vl
+    str+=(combine(result,"sat")+'\t') //adposition
+    str+=' \t' //sessionid
+    str+=(combine(result,"scr")+'\t') //copyright
+    str+=' \t'  //orderid
+    str+=(combine(result,"sprd")+'\t') //exclusive package type
+    str+=' \t' //product type
+    str+=' \t' //avs
+    str+=' \t' //dp
+    str+=' \t' //device type
+    str+=' \t' //os type
+    str+=' \t' //clitent type
+    str+=' \t' //sdkid
+    str+=' \t' //offad
+    str+=(combine(result,"suri")+'\t') //loginid
+    str+=' \t' //reserved1 >dcid
+    str+=' \t' //reserved2
+    str+=' \t' //reserved3
+    str+=' \t' //reserved4
+    str+=' \t' //ext
+    str+=' \t' //hyid
+    str+=(combine(result,"spc")+'\t') //price
+    str+=(combine(result,"slog")+'\n') //logtype
 
    #test
     if combine(result,"slog")=="":
