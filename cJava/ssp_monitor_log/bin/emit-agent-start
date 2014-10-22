@@ -1,0 +1,2 @@
+#!/bin/bash
+sh /opt/emit-agent/bin/emit-agent start emit
