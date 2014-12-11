@@ -1,0 +1,58 @@
+import org.vertx.java.core.Handler;
+import org.vertx.java.core.http.HttpServerRequest;
+import org.vertx.java.core.json.JsonArray;
+import org.vertx.java.core.json.JsonObject;
+import org.vertx.java.core.json.impl.Json;
+import org.vertx.java.platform.Verticle;
+
+
+public class ExchangeServer extends Verticle {
+	public void start() {
+		vertx.createHttpServer().requestHandler(new Handler<HttpServerRequest>() {
+            public void handle(HttpServerRequest req) {
+                JsonObject adxResponse = new JsonObject();
+                JsonArray responseAdArray = new JsonArray();
+
+                JsonObject adxResponsePm = new JsonObject();
+                JsonArray adxResponsePmItem0 = new JsonArray();
+                adxResponsePmItem0.addString("http://example.com/monitor.gif?a=1&b=2")
+                        .addString("http://third-party.com/monitor.gif?a=1&b=2");
+
+                JsonArray adxResponsePmItem15 = new JsonArray();
+                adxResponsePmItem15.addString("http://example.com/monitor...");
+                JsonArray adxResponseCm = new JsonArray();
+                adxResponseCm.addString("http://example.com/click.gif?a=1&b=2")
+                        .addString("http://third-party.com/monitor.gif?a=1&b=2");
+                JsonObject adxResponseMeta = new JsonObject();
+                adxResponseMeta.putNumber("check", 1)
+                        .putNumber("duration", 15);
+                adxResponsePm.putArray("0", adxResponsePmItem0)
+                        .putArray("15", adxResponsePmItem15);
+
+                String[] adxReqParamOfP = req.params().get("l").split(",");
+                for (String str : adxReqParamOfP) {
+                    JsonObject responseAdArrayItem = new JsonObject();
+                    responseAdArrayItem.putString("pid", str)
+                            .putNumber("price", (int) (Math.random() * 100))
+                            .putString("etype", "N")
+                            .putString("type", "N")
+                            .putString("src", "http://example.com/sample.flv")
+                            .putNumber("adw", 450)
+                            .putNumber("adh", 300)
+                            .putObject("pm", adxResponsePm)
+                            .putValue("cm", adxResponseCm)
+                            .putString("ldp", "http://brand-landing-page.com/")
+                            .putObject("meta", adxResponseMeta);
+
+                    responseAdArray.add(responseAdArrayItem);
+                }
+                adxResponse.putArray("ad", responseAdArray)
+                        .putString("version", "1")
+                        .putNumber("pt", 200)
+                        .putString("reqid", "1234");
+
+                req.response().end(adxResponse.toString());
+            }
+        }).listen(8282);
+	}
+}
